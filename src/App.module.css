@@ -275,9 +275,17 @@ input[type=number] {
 
 
 @media screen and (max-width: 650px) {
+  .bgBlack h1 {
+    font-size: 1.2rem;
+  }
+
   .signature {
     width: 400px;
     margin: 5px 0 0 -65px;
+  }
+
+  .drawerContainer {
+    margin: 0;
   }
   
   .logo {
