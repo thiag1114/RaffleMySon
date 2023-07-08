@@ -9,12 +9,13 @@ import logo from './imgs/logo-leonardo.png'
 
 function App() {
 
-  const [minRange, setMinRange] = useState(0)
+  const [minRange, setMinRange] = useState(1)
   const [maxRange, setMaxRange] = useState(10)
   const [numRandom, setNumRandom] = useState()
   const [scrolling, setScrolling] = useState(false)
   const [showConfetti, setShowConfetti] = useState(false)
 
+  const alertNum = useRef(null)
   const bgBlackWallpaper = useRef(null)
   const bgBlackH1 = useRef(null)
   const playMusic = useRef(null)
@@ -35,12 +36,17 @@ function App() {
 
   const generateNumber = () => {
     numChoosed.current.style.opacity = "0";
-    containerHomeRef.current.style.marginTop = "-100vh";
-    if (minRange > maxRange) {
-      alert("Numero minimo maior que o máximo! ERROR")
+    if (minRange && maxRange) {
+      if (minRange > maxRange) {
+        alertNum.current.style.opacity = "1";
+      } else {
+        alertNum.current.style.opacity = "0";
+        containerHomeRef.current.style.marginTop = "-100vh";
+        setNumRandom(Math.floor(Math.random() * (maxRange - minRange + 1)) + minRange);
+        setScrolling(true);
+      }
     } else {
-      setNumRandom(Math.floor(Math.random() * (maxRange - minRange + 1)) + minRange);
-      setScrolling(true);
+      alertNum.current.style.opacity = "1";
     }
   }
 
@@ -73,15 +79,16 @@ function App() {
           <p className={styles.paragraph}><span>Coded by </span><a href="https://github.com/thiag1114" target="_blank">Thiago Augusto <FaGithub /></a></p>
         </div>
         <div className={styles.drawerContainer}>
-          <p><span>ESCOLHA</span><span>O</span><span>INTERVALO</span></p>
+          <p className={styles.subTitle}><span>ESCOLHA</span><span>O</span><span>INTERVALO</span></p>
           <div className={styles.labelContainer}>
             <label>
-              <span>MIN:</span><input type="number" name="minRange" id="minRange" value={minRange} onChange={(e) => setMinRange(+e.target.value)} />
+              <span>MIN:</span><input type="number" name="minRange" id="minRange" value={minRange || ""} onChange={(e) => setMinRange(+e.target.value)} />
             </label>
             <label>
-              <span>MAX:</span><input type="number" name="maxRange" id="maxRange" value={maxRange} onChange={(e) => setMaxRange(+e.target.value)} />
+              <span>MAX:</span><input type="number" name="maxRange" id="maxRange" value={maxRange || ""} onChange={(e) => setMaxRange(+e.target.value)} />
             </label>
           </div>
+          <p ref={alertNum} className={styles.alertMessage}><span>Preencha o intervalo.</span><span>O valor mínimo não pode ser maior que o máximo.</span></p>
           <input className={scrolling ? `${styles.disabledBtn} ${styles.btnGenerate}` : `${styles.btnGenerate}`} onClick={generateNumber} type="button" value="SORTEARµAGORA" />
         </div>
       </div>

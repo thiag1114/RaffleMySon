@@ -57,6 +57,19 @@ a:hover {
   color: #000;
 }
 
+.alertMessage {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  font-family: "Helvetica", sans-serif;
+  font-size: .8rem;
+  text-align: center;
+  color: #1B0D04;
+  margin-top: 1rem;
+  opacity: 0;
+  transition: linear .5s;
+}
+
 .containerHome {
   width: 100%;
   height: 100vh;
@@ -90,7 +103,7 @@ a:hover {
   color: #f9f9f9;
 }
 
-.drawerContainer p {
+.drawerContainer .subTitle {
   width: 320px;
   height: 40px;
   display: flex;
@@ -104,23 +117,29 @@ a:hover {
   backdrop-filter: blur(15px);
 }
 
+.labelContainer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
 .labelContainer label span {
   font-size: .9rem;
   color: #291208;
 }
 
 .labelContainer label input {
-  width: 35px;
+  width: 45px;
   height: 35px;
   text-align: center;
   font-size: 1.2rem;
+  margin-left: 5px;
   color: #f9f9f9;
   background-color: #000000ad;
   backdrop-filter: blur(15px);
   outline: none;
   border: 0;
   border-radius: 5px;
-  margin: 0 20px 0 5px;
 }
 
 /* Arrows in number field */
@@ -134,7 +153,7 @@ input[type=number] {
 }
 
 .btnGenerate {
-  margin-top: 3rem;
+  margin-top: 2rem;
   padding: .8rem 1.5rem;
   font-size: 1.2rem;
   font-family: "Lion King";
@@ -259,6 +278,10 @@ input[type=number] {
     width: 100%;
   }
 
+  .btnGenerate:hover {
+    background: #c25706;
+  }
+
   .drawerContainer {
     margin: 5rem 0 0 -1.9rem;
   }
@@ -284,6 +307,10 @@ input[type=number] {
     margin: 5px 0 0 -65px;
   }
 
+  .containerHome {
+    height: 90vh;
+  }
+
   .drawerContainer {
     margin: 0;
   }
@@ -293,6 +320,10 @@ input[type=number] {
     width: 80%;
   }
   
+  .btnGenerate {
+    padding: 1.5rem 1.5rem;
+  }
+
   .containerWinner .title {
     top: 6rem;
     width: 80%;
