@@ -7,7 +7,6 @@ import music from './music/lion.mp3'
 import logo from './imgs/logo-leonardo.png'
 
 
-
 function App() {
 
   const [minRange, setMinRange] = useState(1)
